@@ -80,8 +80,13 @@ WSGI_APPLICATION = 'fitness_website.wsgi.app'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'URL': 'postgresql://postgres:dmOq8jiNdUxV4CfQPMp8@containers-us-west-158.railway.app:6197/railwayL',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'dmOq8jiNdUxV4CfQPMp8',
+        'HOST': 'containers-us-west-158.railway.app',
+        'PORT': 6197,
     }
 }
 
