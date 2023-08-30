@@ -1,0 +1,70 @@
+{% extends 'customer_base.html' %}
+
+{% block content %}
+<head>
+  <style>
+    body {
+
+      background-color: #659fdc;
+    }
+    
+    table {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    th, td {
+      padding: 10px;
+    }
+    
+    button {
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+
+<h2>Book Sessions</h2>
+
+<form method="GET" action="{% url 'book_sessions' %}">
+  <input type="text" name="search_query" placeholder="Search by name or speciality" value="{{ search_query }}">
+  <button type="submit">Search</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Full Name</th>
+      <th>Speciality</th>
+      <th>Hourly Rate</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for trainer in trainers %}
+      <tr>
+        <td>{{ trainer.username }}</td>
+        <td>{{ trainer.full_name }}</td>
+        <td>{{ trainer.speciality }}</td>
+        <td>{{ trainer.hourly_rate }}</td>
+        <td>
+          <form method="POST" action="{% url 'book_sessions' %}">
+            {% csrf_token %}
+            <input type="hidden" name="trainer_username" value="{{ trainer.username }}">
+            <input type="date" name="date" required>
+            <input type="time" name="time" required>
+            <button type="submit">Book</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

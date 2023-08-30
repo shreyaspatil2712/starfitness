@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <title>Star Fitness</title>
+</head>
+<body>
+  <div id="link" style="clear:both;z-index:999">
+    <div class="ddsmoothmenu">
+      <ul>
+        <li><a href="{% url 'trainer_page' %}">Trainer Bookings</a></li>
+        <li><a href="{% url 'profile_page' %}">Profile</a></li>
+        <li><a href="{% url 'user_logout' %}">Logout</a></li>
+      </ul>
+      <br style="clear: left">
+    </div>
+  </div>
+
+  {% block content %}{% endblock %}
+
+
+</body>
+</html>

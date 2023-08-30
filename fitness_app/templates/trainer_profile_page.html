@@ -1,0 +1,61 @@
+{% extends 'trainer_base.html' %}
+
+{% block content %}
+<head>
+  <style>
+    body {
+      background-color: #659fdc;
+    }
+    
+    .profile-details {
+      background-color: white; /* Change background color to white */
+      padding: 20px;
+      border-radius: 10px;
+      margin: 0 auto; /* Center the box horizontally */
+      max-width: 500px; /* Limit the width of the box */
+      font-family: "Arial", sans-serif; /* Apply a classy font */
+      text-align: center; /* Align text and image at center */
+    }
+    
+    .profile-picture {
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      border-radius: 50%;
+      display: block; /* Center the image horizontally */
+      margin: 0 auto; /* Center the image horizontally */
+    }
+  </style>
+</head>
+
+
+<h1>Profile Page</h1>
+
+
+
+<div class="profile-details">
+
+  {% if user_details.profile_picture %}
+  <img src="{{ MEDIA_URL }}{{ user_details.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+{% endif %}
+  <h2>{{ user_details.full_name }}</h2>
+  
+  <h3>Username: {{ user_details.username }}</h3>
+  
+  <h3>Email: {{ user_details.email }}</h3>
+  
+  <h3>Phone Number: {{ user_details.phone_number }}</h3>
+  
+  <h3>Date of Birth: {{ user_details.dob }}</h3>
+  
+  <h3>Gender: {{ user_details.gender }}</h3>
+  
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    
+    <button type="submit">Update Profile</button>
+  </form>
+</div>
+{% endblock %}

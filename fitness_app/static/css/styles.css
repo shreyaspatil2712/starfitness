@@ -1,0 +1,67 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.ddsmoothmenu {
+  font-size: 19px;
+  background-color: #115f64;
+  width: 100%
+}
+
+.ddsmoothmenu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ddsmoothmenu ul li {
+  float: left;
+  position: relative;
+}
+
+.ddsmoothmenu ul li a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.ddsmoothmenu ul li a:hover {
+  background-color: black;
+}
+
+.ddsmoothmenu ul li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 999;
+}
+
+.ddsmoothmenu ul li:hover ul {
+  display: block;
+}
+
+.ddsmoothmenu ul li ul li {
+  float: none;
+}
+
+.ddsmoothmenu ul li ul li a {
+  padding: 8px 20px;
+}
+

@@ -1,0 +1,133 @@
+{% extends 'customer_base.html' %}
+
+{% block content %}
+<head>
+    <style>
+        /* Global Styles */
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+          padding: 0;
+          background-color: #f2f2f2;
+        }
+
+        .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+
+        .ddsmoothmenu {
+          font-size: 19px;
+          background-color: #115f64;
+          width: 100%
+        }
+
+        .ddsmoothmenu ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .ddsmoothmenu ul li {
+          float: left;
+          position: relative;
+        }
+
+        .ddsmoothmenu ul li a {
+          display: block;
+          padding: 10px 15px;
+          color: white;
+          text-decoration: none;
+        }
+
+        .ddsmoothmenu ul li a:hover {
+          background-color: black;
+        }
+
+        .ddsmoothmenu ul li ul {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-top: none;
+          z-index: 999;
+        }
+
+        .ddsmoothmenu ul li:hover ul {
+          display: block;
+        }
+
+        .ddsmoothmenu ul li ul li {
+          float: none;
+        }
+
+        .ddsmoothmenu ul li ul li a {
+          padding: 8px 20px;
+        }
+
+        body {
+          background-color: #659fdc;
+        }
+
+        table {
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        th, td {
+          padding: 10px;
+        }
+
+        button {
+          background-color: blue;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          padding: 5px 10px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #jitsi-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 90vh;
+          width: 80vw;
+          background-color: white;
+          border-radius: 20px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+      </style>
+</head>
+    <h1>Video Call</h1>
+    <div id="jitsi-container"></div>
+
+    <script src="https://meet.jit.si/external_api.js"></script>
+    <script>
+        window.onload = function () {
+          google.accounts.id.initialize({
+            client_id: 'YOUR_GOOGLE_CLIENT_ID',
+            callback: handleCredentialResponse
+          });
+          google.accounts.id.prompt();
+        };
+      </script>
+    <script>
+        const domain = 'meet.jit.si';
+        const options = {
+            roomName: '{{ meeting_link }}',
+            width: 1200,
+            height: 800,
+            parentNode: document.querySelector('#jitsi-container'),
+            userInfo: {
+                displayName: '{{ request.user.username }}'
+            }
+        };
+        const api = new JitsiMeetExternalAPI(domain, options);
+    </script>
+{% endblock %}
