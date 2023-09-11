@@ -1,2 +1,2 @@
 # starfitness
-2nd try
+deployed on https://starfitness.vercel.app/
